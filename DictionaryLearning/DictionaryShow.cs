@@ -10,12 +10,29 @@ namespace DictionaryLearning
     {
         public void Show(Dictionary<string, string> dictionaryName)
         {
-            // Take Key Inpute string from user.
-            Console.Write("Enter Key String: ");
-            string keyOfDictionary = Console.ReadLine();
+            //Console.WriteLine(DictionaryNull.CheckNull(dictionaryName));
+            if (DictionaryNull.CheckNull(dictionaryName)) // Check that Dictionary Is Empty or not ?
+            {
+                string? keyOfDictionary;
+                bool checkKey = false;
 
-            var showElementUsingKey = dictionaryName[keyOfDictionary];
-            Console.WriteLine($"The Value Of {keyOfDictionary} is {showElementUsingKey}");
+                while (!checkKey)
+                {
+                    // Take Key Inpute string from user.
+                    Console.Write("Enter Key String: ");
+                    keyOfDictionary = Console.ReadLine();
+
+                    if (StringNullOrEmpty.NullOrEmpty(keyOfDictionary))
+                    {
+                        if (DictionaryContainOrNot.ContainOrNot(dictionaryName, keyOfDictionary))
+                        {
+                            var showElementUsingKey = dictionaryName[keyOfDictionary];
+                            Console.WriteLine($"The Value Of {keyOfDictionary} is {showElementUsingKey}");
+                            checkKey = true;
+                        }
+                    }
+                }                
+            }
         }
     }
 }

@@ -10,11 +10,27 @@ namespace DictionaryLearning
     {
         public void RemoveElement(Dictionary<string, string> dictionaryName)
         {
-            // Take Element Inpute string from user which they want to remove.
-            Console.Write("Enter the Value which you want to remove: ");
-            string userInputWantremove = Console.ReadLine();
+            if (DictionaryNull.CheckNull(dictionaryName)) // Check that Dictionary Is Empty or not ?
+            {
+                string? userInputWantremove ;
+                bool checkInputeRemove = false;
 
-            dictionaryName.Remove(userInputWantremove);
+                while(!checkInputeRemove)
+                {
+                    // Take Element Inpute string from user which they want to remove.
+                    Console.Write("Enter the Key of Element which you want to remove: ");
+                    userInputWantremove = Console.ReadLine();
+
+                    if (StringNullOrEmpty.NullOrEmpty(userInputWantremove))
+                    {
+                        if (DictionaryContainOrNot.ContainOrNot(dictionaryName, userInputWantremove))
+                        {
+                            dictionaryName.Remove(userInputWantremove);
+                            checkInputeRemove = true;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -10,15 +10,40 @@ namespace DictionaryLearning
     {
         public void ChangeElement(Dictionary<string, string> dictionaryName)
         {
-            // Take Element Inpute string from user which they want to update.
-            Console.Write("Enter the Value which you want to Update: ");
-            string userInputWantChange = Console.ReadLine();
+            if (DictionaryNull.CheckNull(dictionaryName)) // Check that Dictionary Is Empty or not ?
+            {
+                string? userInputWantChange ;
+                string? userInputNewValue ;
+                bool checkInputeChange = false;
 
-            // Take New Element Inpute string from user for update.
-            Console.Write("Enter the New Value : ");
-            string updatedvalue = Console.ReadLine();
+                while (!checkInputeChange)
+                {
+                    // Take Element Inpute string from user which they want to update.
+                    Console.Write("Enter the Key which you want to Update: ");
+                    userInputWantChange = Console.ReadLine();
 
-            dictionaryName[userInputWantChange] = updatedvalue;
+                    if (StringNullOrEmpty.NullOrEmpty(userInputWantChange))
+                    {
+                        if (DictionaryContainOrNot.ContainOrNot(dictionaryName, userInputWantChange))
+                        {
+                            bool checkInputeNewChange = false;
+                            while (!checkInputeNewChange)
+                            {
+                                // Take New Element Inpute string from user for update.
+                                Console.Write("Enter the New Value : ");
+                                userInputNewValue = Console.ReadLine();
+
+                                if (StringNullOrEmpty.NullOrEmpty(userInputNewValue))
+                                {
+                                    dictionaryName[userInputWantChange] = userInputNewValue;
+                                    checkInputeNewChange = true;                                    
+                                }
+                            }
+                        }
+                        checkInputeChange = true;
+                    }
+                }
+            }
         }
     }
 }

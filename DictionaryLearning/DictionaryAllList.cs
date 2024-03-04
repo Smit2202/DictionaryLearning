@@ -10,9 +10,13 @@ namespace DictionaryLearning
     {
         public void AllList(Dictionary<string, string> dictionaryName)
         {
-            foreach (KeyValuePair<string, string> item in dictionaryName)
+            if (DictionaryNull.CheckNull(dictionaryName)) // Check that Dictionary Is Empty or not ?
             {
-                Console.WriteLine($"{item.Key} : {item.Value}");
+                foreach (KeyValuePair<string, string> item in dictionaryName)
+                {
+                    Console.WriteLine($"{item.Key} : {item.Value}");
+                }
+
             }
         }
     }
